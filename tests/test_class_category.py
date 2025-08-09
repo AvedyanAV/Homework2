@@ -2,6 +2,7 @@ import pytest
 from src.class_product import Product
 from src.class_category import Category
 
+
 @pytest.fixture
 def sample_products():
     return [
@@ -26,4 +27,3 @@ def test_category_initialization(sample_category, sample_products):
 def test_total_categories_count(sample_category):
     """Проверяем подсчет количества категорий"""
     assert Category.category_count >= 1  # Как минимум наша категория
-
