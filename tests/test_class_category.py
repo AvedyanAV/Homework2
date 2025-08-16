@@ -36,9 +36,3 @@ def test_products_property(sample_category):
     assert products_info[0] == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
     assert products_info[1] == "Iphone 15, 210000.0 руб. Остаток: 8 шт."
     assert products_info[2] == "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт."
-
-
-
-
-
-
