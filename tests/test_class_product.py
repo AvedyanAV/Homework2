@@ -20,4 +20,3 @@ def test_product_property(capsys, sample_product):
     sample_product.price = 0
     captured = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured.out
-
