@@ -30,6 +30,9 @@ class Product:
             quantity=product_data.get('quantity')
         )
 
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
     def __add__(self, other):
         """Сложение продуктов: возвращает общую стоимость"""
         if not isinstance(other, Product):

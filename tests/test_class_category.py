@@ -37,6 +37,7 @@ def test_products_property(sample_category):
     assert products_info[1] == "Iphone 15, 210000.0 руб. Остаток: 8 шт."
     assert products_info[2] == "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт."
 
+
 def test_category_str(sample_category):
     """Проверка строкового представления категории."""
-    assert str(sample_category) == "Электроника, количество продуктов: 3 шт."
+    assert str(sample_category) == "Электроника, количество продуктов: 27 шт."

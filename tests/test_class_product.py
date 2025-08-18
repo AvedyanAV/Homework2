@@ -32,3 +32,8 @@ def test_product_addition(sample_product, another_product):
     total = sample_product + another_product
     expected = (180000.0 * 5) + (200000.0 * 3)
     assert total == expected
+
+
+def test_product_str(sample_product):
+    """Проверка строкового представления продукта"""
+    assert str(sample_product) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
