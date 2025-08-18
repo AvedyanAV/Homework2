@@ -28,3 +28,6 @@ class Category:
             product_info = f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт."
             products_info.append(product_info)
         return products_info
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {len(self.__products)} шт."

@@ -29,3 +29,9 @@ class Product:
             price=product_data.get('price'),
             quantity=product_data.get('quantity')
         )
+
+    def __add__(self, other):
+        """Сложение продуктов: возвращает общую стоимость"""
+        if not isinstance(other, Product):
+            raise TypeError("Можно складывать только объекты класса Product")
+        return (self.price * self.quantity) + (other.price * other.quantity)
