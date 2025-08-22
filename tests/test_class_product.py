@@ -1,5 +1,5 @@
 import pytest
-from src.class_product import Product
+from src.class_product import Product, Smartphone, LawnGrass
 
 
 @pytest.fixture
@@ -37,3 +37,43 @@ def test_product_addition(sample_product, another_product):
 def test_product_str(sample_product):
     """Проверка строкового представления продукта"""
     assert str(sample_product) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_smartphone_inheritance():
+    """Тест наследования Smartphone от Product"""
+    smartphone = Smartphone("Тест", "Тест", 100.0, 1, 90.0, "M1", 128, "Черный")
+
+    assert isinstance(smartphone, Product)
+    assert hasattr(smartphone, 'price')
+    assert hasattr(smartphone, 'quantity')
+
+
+def test_smartphone_addition_same_type():
+    """Тест сложения смартфонов одного типа"""
+    phone1 = Smartphone("Phone1", "Desc1", 50000.0, 2, 90.0, "M1", 128, "Black")
+    phone2 = Smartphone("Phone2", "Desc2", 60000.0, 1, 95.0, "M2", 256, "White")
+
+    result = phone1 + phone2
+    expected = (50000.0 * 2) + (60000.0 * 1)
+
+    assert result == expected
+
+
+def test_lawn_grass_inheritance():
+    """Тест наследования LawnGrass от Product"""
+    grass = LawnGrass("Трава", "Описание", 100.0, 5, "РФ", "10 дней", "Зеленый")
+
+    assert isinstance(grass, Product)
+    assert hasattr(grass, 'price')
+    assert hasattr(grass, 'quantity')
+
+
+def test_lawn_grass_addition_same_type():
+    """Тест сложения газонных трав одного типа"""
+    grass1 = LawnGrass("Grass1", "Desc1", 1000.0, 10, "RU", "10 дней", "Green")
+    grass2 = LawnGrass("Grass2", "Desc2", 1500.0, 5, "US", "12 дней", "Dark Green")
+
+    result = grass1 + grass2
+    expected = (1000.0 * 10) + (1500.0 * 5)
+
+    assert result == expected
