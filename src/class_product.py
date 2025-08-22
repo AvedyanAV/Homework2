@@ -23,6 +23,7 @@ class Product:
 
     @classmethod
     def new_product(cls, product_data: dict):
+        """Создает новый продукт из словаря данных"""
         return cls(
             name=product_data.get('name'),
             description=product_data.get('description'),
@@ -34,7 +35,30 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """Сложение продуктов: возвращает общую стоимость"""
+        """Сложение продуктов: возвращает общую стоимость только для объектов одного класса"""
         if not isinstance(other, Product):
             raise TypeError("Можно складывать только объекты класса Product")
+
+        if type(self) is not type(other):
+            raise TypeError("Нельзя складывать объекты разных классов продуктов")
+
         return (self.price * self.quantity) + (other.price * other.quantity)
+
+
+class Smartphone(Product):
+
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+
+    def __init__(self, name, description, price, quantity, country, germination_period, color):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
