@@ -1,5 +1,5 @@
 import pytest
-from src.class_product import Product, Smartphone, LawnGrass
+from src.class_product import Product, Smartphone, LawnGrass, BaseProduct, InitLoggerMixin
 
 
 @pytest.fixture
@@ -77,3 +77,21 @@ def test_lawngrass_add_type():
     expected = (1000.0 * 10) + (1500.0 * 5)
 
     assert result == expected
+
+
+def test_base_product_abstract():
+    """Тест, что BaseProduct действительно абстрактный"""
+    with pytest.raises(TypeError):
+        BaseProduct()
+
+
+def test_init_logger_output(capsys):
+    """Тест вывода в консоль при создании объекта"""
+    product = Product("Test", "Description", 100.0, 5)
+    captured = capsys.readouterr()
+
+    assert "Product(" in captured.out
+    assert "'Test'" in captured.out
+    assert "'Description'" in captured.out
+    assert "100.0" in captured.out
+    assert "5" in captured.out
