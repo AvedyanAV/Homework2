@@ -1,10 +1,46 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class InitLoggerMixin:
+    """Миксин для логирования создания объектов"""
+
+    def __init__(self, *args, **kwargs):
+        class_name = self.__class__.__name__
+
+        params = []
+
+        for arg in args:
+            params.append(repr(arg))
+
+        for key, value in kwargs.items():
+            params.append(f"{key}={repr(value)}")
+
+        params_str = ', '.join(params)
+
+        print(f"{class_name}({params_str})")
+
+        super().__init__(*args, **kwargs)
+
+
+class BaseProduct(ABC):
+    """Базовый абстрактный класс"""
+    @abstractmethod
+    def __init__(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def price(self):
+        pass
+
+
+class Product(InitLoggerMixin, BaseProduct):
     name: str
     description: str
     __price: float
     quantity: int
 
     def __init__(self, name, description, price, quantity):
+        super().__init__(name, description, price, quantity)
         self.name = name
         self.description = description
         self.__price = price
